@@ -48,7 +48,7 @@ More infos: [inloox.com Pages](https://inloox.com)
 ## How to build
 
 It uses the **[TcBuild](https://github.com/ficnar/TcBuild)** nuget package to build a Plugin 
-that can be used with Total Commander.
+that can be used with Total Commander. The installpackage will be in directory ContentInloox11\bin\Release\out\.
 
 ## Enable Trace logging
 
