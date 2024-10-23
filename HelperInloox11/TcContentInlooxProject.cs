@@ -202,16 +202,16 @@ namespace TcPlugins.HelperInloox11
 
         private void SetNotInInlooxAttributes()
         {
-            _projectname = "!!! no data for that in inloox !!!";
+            _projectname = "!?! no data for that in inloox !?!";
             _clientname = "";
             _statuslabel = "";
         }
 
         private void SetErrorWithGettingInlooxAttributes(string error)
         {
-            _projectname = string.Format("{0}", error);
-            _clientname = "Error!";
-            _statuslabel = "Error!";
+            _projectname = string.Format("!!! {0} !!!", error);
+            _clientname = "Error";
+            _statuslabel = "Error";
         }
         private async void GetAttributesAsync()
         {
