@@ -683,7 +683,7 @@ namespace TcPlugins.HelperInloox11
             else if (c == 0)
                 return null;
             else
-                throw new InvalidOperationException("More than one match for the project number in GetCustomApiDynamikProjectFromNumberAsync");
+                throw new InvalidOperationException(string.Format("Duplicate project number {0} found", ProjectNumber));
 
             //return null;
         }

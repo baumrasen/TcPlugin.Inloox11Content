@@ -68,6 +68,11 @@ namespace TcPlugins.HelperInloox11
             {
                 return _gotData;
             }
+            set
+            {
+                _gotData = value; 
+            }   
+
         }
 
         public string Number
@@ -201,6 +206,13 @@ namespace TcPlugins.HelperInloox11
             _clientname = "";
             _statuslabel = "";
         }
+
+        private void SetErrorWithGettingInlooxAttributes(string error)
+        {
+            _projectname = string.Format("{0}", error);
+            _clientname = "Error!";
+            _statuslabel = "Error!";
+        }
         private async void GetAttributesAsync()
         {
             
@@ -257,7 +269,7 @@ namespace TcPlugins.HelperInloox11
                             Debug.WriteLine(String.Format("           TcContentInlooxProject GetAttributesAsync (getting NOT FOUND IN INLOOX): {0} {1}", "_gettingDataNow", Number));
                             // wenn kein Projekt gefunden wurde, dass diese Projektnummer hat, dann...
                             SetNotInInlooxAttributes();
-                            _gotData = true;
+                            GotData = true;
                         }
                     }
 
@@ -280,11 +292,34 @@ namespace TcPlugins.HelperInloox11
                         Debug.WriteLine("{0} EXCEPTION in {1} Fehler:{2}", DateTime.Now, "TcContentInlooxProjectList", ex);
 
                         errormsg = String.Format("error: {0}", exeption_message);
+
+                        SetErrorWithGettingInlooxAttributes(errormsg);
+                        GotData = true;
+                    }
+                    else if (ex.GetType() == typeof(InvalidOperationException))
+                    {
+                        InvalidOperationException ex2 = (InvalidOperationException)ex;
+                        string exeption_message = ex2.Message;
+                        Debug.WriteLine("");
+                        //'"access_token":\s(.*),\s
+                        Debug.WriteLine("");
+
+                        // MsgBox(String.Format("ERROR in Odata! {0}", ex.Message), MsgBoxStyle.Critical, "Fehler in wpfMainWindow Odata")
+                        Debug.WriteLine("{0} EXCEPTION in {1} Fehler:{2}", DateTime.Now, "TcContentInlooxProjectList", ex);
+
+                        errormsg = String.Format("Error: {0}", exeption_message);
+
+                        SetErrorWithGettingInlooxAttributes(errormsg);
+                        GotData = true;
+
                     }
                     else
                     {
                         Debug.WriteLine("{0} EXCEPTION in {1} Fehler:{2}", DateTime.Now, "TcContentInlooxProjectList", ex);
                         errormsg = ex.Message;
+
+                        SetErrorWithGettingInlooxAttributes(errormsg);
+                        GotData = true;
                     }
 
                     Debug.WriteLine(String.Format("{0}  ###################   EXEPTION1   ############## in GetAttributesAsync: {1}", DateTime.Now, errormsg));
@@ -328,7 +363,7 @@ namespace TcPlugins.HelperInloox11
                 //Debug.WriteLine(String.Format("            TcContentInlooxProject result GetAttributes: {0} / {1} / {2}", _projectId, _name, _clientname));
             }
 
-            _gotData = true;
+            GotData = true;
         }
 
         private async Task WaitForGotDataAsync(string what)
