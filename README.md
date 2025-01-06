@@ -1,6 +1,8 @@
 # TcPlugin.Inloox11Content
 This is a Total Commander Content .wdx plugin for show informations from the Inloox-API
 
+So you can call it a Total Commander Inloox Plugin. It will show the project number, project name, project status and client name (for example) as a column in the folder, where the project data are stored.
+
 ## Installation 
 
 Plugin required [**.NET Framework 4.7.2**](https://dotnet.microsoft.com/download/dotnet-framework) or newer installed in Windows.
@@ -37,7 +39,7 @@ Optional:
 	* ![Image](https://raw.githubusercontent.com/baumrasen/TcPlugin.Inloox11Content/master/images/sorting_like_files.png)
 	* with this option, you can sort by the shown inloox columns
 
-More abaut the **[Total Commander integrated plugin installer](https://www.ghisler.ch/wiki/index.php/Plugin#Installation_using_Total_Commander.27s_integrated_plugin_installer).**
+More about the **[Total Commander integrated plugin installer](https://www.ghisler.ch/wiki/index.php/Plugin#Installation_using_Total_Commander.27s_integrated_plugin_installer).**
 
 ## Inloox
 
